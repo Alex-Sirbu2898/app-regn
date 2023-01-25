@@ -1,0 +1,38 @@
+<span class="p-input">
+    <label for="name"> First Name</label>
+    <input type="text" pInputText id="name" placeholder="FirstName" [(ngModel)]="model.firstName" />
+</span>
+
+<span class="p-input">
+    <label for="lastName">Last Name</label>
+    <input type="text" pInputText placeholder="lastName" [(ngModel)]="model.lastName" />
+</span>
+
+<span class="p-input">
+    <label for="address">Address</label>
+    <input type="text" pInputText placeholder="address" [(ngModel)]="model.address" />
+</span>
+
+<span class="p-input">
+    <label for="enrolmentYear">Enrolment Year</label>
+    <input type="number" pInputText placeholder="enrolmentYear" [(ngModel)]="model.enrolmentYear" />
+</span>
+
+    <p-dropdown [options]="genderValues" optionLabel="name" optionValue="value" placeholder="gender" [(ngModel)]="model.gender" auto-width="false"></p-dropdown>
+
+    <span class="p-input">
+        <label for="majorAbbreviation">Major</label>
+        <input type="text" pInputText placeholder="majorAbbreviation" [(ngModel)]="model.majorAbbreviation" disabled="true"/>
+        <p-dropdown [options]="majorValues" optionLabel="name" optionValue="value" placeholder="gender" [(ngModel)]="model.majorId" auto-width="false"></p-dropdown>
+    </span>
+
+
+<span class="p-input">
+    <label for="studentId">Student ID</label>
+    <input type="text" pInputText placeholder="studentId" [(ngModel)]="model.studentId" disabled="true"/>
+</span>
+
+<span class="p-calendar">
+    <label for="dateOfBirth">Birth date</label>
+    <p-calendar [(ngModel)]="model.dateOfBirth" [minDate]="minDate" [maxDate]="maxDate" [inline]="true" selectionMode ="single" ></p-calendar>
+</span>
