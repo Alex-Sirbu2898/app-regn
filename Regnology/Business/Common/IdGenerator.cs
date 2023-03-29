@@ -4,7 +4,7 @@ namespace Regnology.Business
 {
     public class IdGenerator
     {
-        public string StudentIdValueGenerator(int enrolmentYear, int gender, string majorAbbreviation)
+        public string EmployeeIdValueGenerator(int enrolmentYear, int gender, string majorAbbreviation)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("D");
@@ -18,7 +18,7 @@ namespace Regnology.Business
             return stringBuilder.ToString();
         }
 
-        public string StaffIdValueGenerator(int startYear)
+        public string ManagementIdValueGenerator(int startYear)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("F");

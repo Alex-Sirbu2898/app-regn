@@ -12,8 +12,8 @@ namespace Regnology.Data
             builder.Property(x => x.Abbreviation).IsRequired();
 
 
-            builder.HasMany(x => x.Students);
-            builder.HasMany(x => x.Staffs);
+            builder.HasMany(x => x.Employees);
+            builder.HasMany(x => x.Management);
         }
     }
 }

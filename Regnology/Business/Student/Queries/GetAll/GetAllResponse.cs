@@ -4,7 +4,7 @@ namespace Regnology.Business
 {
     public class GetAllResponse
     {
-        public IEnumerable<Student> Students { get; set; }
+        public IEnumerable<Employee> Employees { get; set; }
         //public int Id { get; set; }
         //public string FirstName { get; set; }
         //public string LastName { get; set; }

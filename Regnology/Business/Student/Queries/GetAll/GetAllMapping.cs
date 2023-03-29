@@ -8,7 +8,7 @@ namespace Regnology.Business
     {
         public GetAllMapping()
         {
-            CreateMap<Student, GetAllResponse>();
+            CreateMap<Employee, GetAllResponse>();
         }
     }
 }

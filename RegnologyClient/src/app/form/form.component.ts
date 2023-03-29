@@ -41,7 +41,6 @@ export class StudentFormComponent implements OnInit{
     }
 
     saveData(){
-        debugger;
         if(this.model.id > 0){
             this.update();
             return;

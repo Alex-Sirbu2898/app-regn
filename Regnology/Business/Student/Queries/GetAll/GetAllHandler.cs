@@ -6,22 +6,22 @@ namespace Regnology.Business
 {
     public sealed class GetAllHandler : IRequestHandler<GetAllQuery, GetAllResponse>
     {
-        private readonly IStudentQueryService _studentQueryService;
+        private readonly IEmployeeQueryService _employeeQueryService;
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetAllHandler(ApplicationDbContext dbContext, IStudentQueryService studentQueryService , IMapper mapper)
+        public GetAllHandler(ApplicationDbContext dbContext, IEmployeeQueryService employeeQueryService , IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _studentQueryService = studentQueryService;
+            _employeeQueryService = employeeQueryService;
         }
 
         public async Task<GetAllResponse> Handle(GetAllQuery request, CancellationToken cancellationToken)
         {
-            var student = _studentQueryService.GetAll();
+            var employee = _employeeQueryService.GetAll();
 
-            return _mapper.Map<GetAllResponse>(student);
+            return _mapper.Map<GetAllResponse>(employee);
         }
     }
 }
