@@ -6,32 +6,32 @@ import { Observable, throwError,  } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from "src/environments/environment";
-import { Student } from "../models/student";
+import { Employee } from "../models/employee";
 import { formatQueryString } from "../utils/format-filter-query";
 
 @Injectable({
     providedIn:'root'
 })
-export class StudentService{
-    baseUrl = environment.apiUrl + '/' + 'student'
+export class EmployeeService{
+    baseUrl = environment.apiUrl + '/' + 'employee'
 
     constructor(private http: HttpClient) { }
     
-    getStudent(id?:number) : Observable<Student> {
-        return this.http.get<Student>(this.baseUrl + '/'+id)
+    getemployee(id?:number) : Observable<Employee> {
+        return this.http.get<Employee>(this.baseUrl + '/'+id)
             .pipe(
-                   map(student => 
-                       student
+                   map(employee => 
+                       employee
                    ),
                    catchError(this.handleError)
                 );
     }
 
-    filterStudents(filterQuery: string): Observable<Array<Student>>{
+    filterEmployees(filterQuery: string): Observable<Array<Employee>>{
         const queryString = formatQueryString(filterQuery);
 
         return this.http
-        .get<Array<Student>>(
+        .get<Array<Employee>>(
             `${this.baseUrl}/filter${queryString}`
         )
         .pipe(
@@ -40,27 +40,27 @@ export class StudentService{
         );
     }
 
-    addStudent(model: Student) : Observable<Student> {
-        return this.http.post<Student>(this.baseUrl, model)
+    addEmployee(model: Employee) : Observable<Employee> {
+        return this.http.post<Employee>(this.baseUrl, model)
             .pipe(
-                   map(student => 
-                       student
+                   map(employee => 
+                       employee
                    ),
                    catchError(this.handleError)
                 );
     }
 
-    editStudent(model: Student) : Observable<Student> {
-        return this.http.put<Student>(this.baseUrl, model)
+    editEmployee(model: Employee) : Observable<Employee> {
+        return this.http.put<Employee>(this.baseUrl, model)
             .pipe(
-                   map(student => 
-                       student
+                   map(employee => 
+                       employee
                    ),
                    catchError(this.handleError)
                 );
     }
 
-    deleteStudent(id: number) {
+    deleteEmployee(id: number) {
         return this.http.delete(
             `${this.baseUrl}/${id}`
         );

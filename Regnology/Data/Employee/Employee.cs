@@ -15,9 +15,12 @@
         public int DivisionId { get; set; }
         public int ManagerId { get; set; }
         public int VacationDays { get; set; }
+        public bool IsManagement { get; set; }
+        public long RoleId { get; set; }
 
         public virtual Division Division { get; set; }
-        public virtual Management Management { get; set; }
+        public virtual IList<Employee> Subordinates { get; set; }
+        public virtual Role Role { get; set; }
 
     }
 }

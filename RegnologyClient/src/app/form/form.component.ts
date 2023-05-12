@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Student } from "../models/student";
-import { StudentService } from "../services/student.service";
+import { Employee } from "../models/employee";
 import {InputTextModule} from 'primeng/inputtext';
 import { Gender } from "../models/gender";
+import { EmployeeService } from "../services/student.service";
 
 @Component({
-    selector: 'student-form',
+    selector: 'employee-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.css'],
 })
-export class StudentFormComponent implements OnInit{
+export class employeeFormComponent implements OnInit{
     @Input()
     public entityId?: number;
 
@@ -19,11 +19,11 @@ export class StudentFormComponent implements OnInit{
     genderValues!: any; 
     majorValues!: any;
 
-    public model!: Student;
-    protected dataService!: StudentService;
+    public model!: Employee;
+    protected dataService!: EmployeeService;
 
     constructor(
-        dataService: StudentService
+        dataService: EmployeeService
     ){
         this.dataService = dataService;
     }
@@ -35,7 +35,7 @@ export class StudentFormComponent implements OnInit{
     }
 
     public getItem(id?: number){
-        this.dataService.getStudent(id)
+        this.dataService.getemployee(id)
         .subscribe((response) => this.model = response),
         (err: any) => console.log(err);
     }
@@ -50,11 +50,11 @@ export class StudentFormComponent implements OnInit{
     }
 
     insert(){
-        this.dataService.addStudent(this.model).subscribe();
+        this.dataService.addEmployee(this.model).subscribe();
         }
 
     update(){
-        this.dataService.editStudent(this.model).subscribe();
+        this.dataService.editEmployee(this.model).subscribe();
         } 
 
         initializeSelectedItem(id?: number){
@@ -64,7 +64,7 @@ export class StudentFormComponent implements OnInit{
             }
 
             if(!this.model)
-                this.model = new Student();
+                this.model = new Employee();
         }
 
         populateDropdown(){

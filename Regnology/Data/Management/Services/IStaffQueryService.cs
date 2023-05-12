@@ -2,6 +2,6 @@
 {
     public interface IStaffQueryService
     {
-        Task<Management> GetById(long id,CancellationToken cancellationToken);
+        Task<Role> GetById(long id,CancellationToken cancellationToken);
     }
 }

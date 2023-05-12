@@ -6,11 +6,11 @@ namespace Regnology.Business
 {
     public sealed class GetEmployeeByIdHandler : IRequestHandler<GetEmployeeByIdQuery,GetEmployeeByIdResponse>
     {
-        private readonly IEmployeeQueryService _employeeQueryService;
+        private readonly IQueryService<Employee> _employeeQueryService;
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetEmployeeByIdHandler(ApplicationDbContext dbContext, IEmployeeQueryService employeeQueryService , IMapper mapper)
+        public GetEmployeeByIdHandler(ApplicationDbContext dbContext, IQueryService<Employee> employeeQueryService , IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

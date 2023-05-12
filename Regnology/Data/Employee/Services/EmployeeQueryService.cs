@@ -4,7 +4,7 @@ using X.PagedList;
 
 namespace Regnology.Data
 {
-    public sealed class EmployeeQueryService : IEmployeeQueryService
+    public sealed class EmployeeQueryService : IQueryService<Employee>
     {
         private readonly ApplicationDbContext _context;
 

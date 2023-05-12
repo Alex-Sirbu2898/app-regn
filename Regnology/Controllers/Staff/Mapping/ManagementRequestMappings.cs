@@ -7,7 +7,7 @@ namespace Regnology.Controllers
     {
         public ManagementRequestMappings()
         {
-            CreateMap<CreateManagementRequest, CreateManagementCommand>();
+            CreateMap<CreateManagementRequest, CreateRoleCommand>();
         }
     }
 }

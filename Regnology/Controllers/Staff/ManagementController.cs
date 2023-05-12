@@ -24,7 +24,7 @@ namespace Regnology.Controllers
         [HttpPost()]
         public async Task<IActionResult> Post([FromBody] CreateManagementRequest request, CancellationToken cancellationToken)
         {
-            var query = _mapper.Map<CreateManagementCommand>(request);
+            var query = _mapper.Map<CreateRoleCommand>(request);
 
             var result = await _mediator.Send(query,cancellationToken);
 
