@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public string Abbreviation { get; set; }
 
-        public virtual IList<Student> Students { get; set; }
-        public virtual IList<Staff> Staffs { get; set; }
+        public virtual IList<Employee> Employees { get; set; }
+        public virtual IList<Role> Management { get; set; }
     }
 }

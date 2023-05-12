@@ -4,12 +4,12 @@
     <p-toolbar styleClass="mb-4 gap-2">
         <ng-template pTemplate="left">
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteStudent()" [disabled]="!selectedStudent"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteEmployee()" [disabled]="!selectedEmployee"></button>
         </ng-template>
     </p-toolbar>
 
-<p-table [value]="students" #grid [lazy]="true" (onLazyLoad)="filterStudents($event)" dataKey="id" selectionMode="single"
-    [(selection)]="selectedStudent" (selectionChange)="onSelectionChange($event)" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+<p-table [value]="employees" #grid [lazy]="true" (onLazyLoad)="filterEmployees($event)" dataKey="id" selectionMode="single"
+    [(selection)]="selectedEmployee" (selectionChange)="onSelectionChange($event)" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
     [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
     <ng-template pTemplate="header">
         <tr>
@@ -34,16 +34,16 @@
 
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-student>
+    <ng-template pTemplate="body" let-employee>
         <tr>
             <td>
-                <p-tableRadioButton [value]="student"></p-tableRadioButton>
+                <p-tableRadioButton [value]="employee"></p-tableRadioButton>
             </td>
-            <td>{{student.firstName}}</td>
-            <td>{{student.lastName}}</td>
-            <td>{{student.address}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.address}}</td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editStudent(student)"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editEmployee(employee)"></button>
             </td>
         </tr>
     </ng-template>
@@ -51,13 +51,13 @@
 
 </div>
 
-<p-dialog [(visible)]="studentDialog" [style]="{width: '1000px'}" header="Student Details" [modal]="true" styleClass="p-fluid" >
+<p-dialog [(visible)]="employeeDialog" [style]="{width: '1000px'}" header="Employee Details" [modal]="true" styleClass="p-fluid" >
     <ng-template pTemplate="content">
-        <student-form [entityId] = selectedStudent.id #addOrEditForm></student-form>
+        <employee-form [entityId] = selectedEmployee.id #addOrEditForm></employee-form>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveStudent()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveEmployee()"></button>
     </ng-template>
 </p-dialog>

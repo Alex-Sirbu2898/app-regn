@@ -1,45 +1,45 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { Student } from "../models/student";
-import { StudentService } from "../services/student.service";
+import { Employee } from "../models/employee";
 import { LazyLoadEvent } from 'primeng/api';
-import { StudentFormComponent } from '../form/form.component';
+import { employeeFormComponent } from '../form/form.component';
 import { Table } from 'primeng/table';
+import { EmployeeService } from '../services/student.service';
 
 @Component({
     templateUrl: './list.component.html'
 })
-export class StudentListComponent implements OnInit {
-    students!: Student[];
+export class employeeListComponent implements OnInit {
+    employees!: Employee[];
 
     totalRecords!: number;
 
     loading!: boolean;
 
-    selectedStudent!: Student;
+    selectedEmployee!: Employee;
 
     queryString: string = '';
 
-    studentDialog: boolean = false;
-    @ViewChild('addOrEditForm') public form!: StudentFormComponent;
+    employeeDialog: boolean = false;
+    @ViewChild('addOrEditForm') public form!: employeeFormComponent;
 
     @ViewChild('grid') public grid!: Table;
 
     constructor(
-        private studentService: StudentService
+        private employeeService: EmployeeService
         ) { }
 
     ngOnInit() {
         this.loading = true;
-        this.selectedStudent = new Student();
+        this.selectedEmployee = new Employee();
 
     }
 
-    filterStudents(event: LazyLoadEvent) {
+    filteremployees(event: LazyLoadEvent) {
         this.loading = true;
 
         setTimeout(() => {
-            this.studentService.filterStudents(this.queryString).subscribe(res => {
-                this.students = res;
+            this.employeeService.filterEmployees(this.queryString).subscribe(res => {
+                this.employees = res;
                 this.loading = false;
                 this.totalRecords = res.length;
             })
@@ -48,33 +48,33 @@ export class StudentListComponent implements OnInit {
 
 
 
-    onSelectionChange(event: { data: Student; }) {
-        this.selectedStudent = event.data;
-        console.log(this.selectedStudent);
+    onSelectionChange(event: { data: Employee; }) {
+        this.selectedEmployee = event.data;
+        console.log(this.selectedEmployee);
     }
 
     openNew() {
-        this.selectedStudent = new Student();
-        this.studentDialog = true;
+        this.selectedEmployee = new Employee();
+        this.employeeDialog = true;
     }
 
     hideDialog() {
-        this.studentDialog = false;
+        this.employeeDialog = false;
         this.loading = true;
         setTimeout(() => {
-            this.studentService.filterStudents(this.queryString).subscribe(res => {
-                this.students = res;
+            this.employeeService.filterEmployees(this.queryString).subscribe(res => {
+                this.employees = res;
                 this.loading = false;
                 this.totalRecords = res.length;
             })
         }, 1000);    }
 
-    editStudent(student: Student) {
-        this.selectedStudent = {...student};
-        this.studentDialog = true;
+    editemployee(employee: Employee) {
+        this.selectedEmployee = {...employee};
+        this.employeeDialog = true;
     }
 
-    saveStudent(){
+    saveEmployee(){
         debugger;
         if(typeof this.form !== 'undefined'){
             this.form.saveData();
@@ -85,22 +85,22 @@ export class StudentListComponent implements OnInit {
         }
 
 
-    deleteStudent(){
-        if(this.selectedStudent.id <= 0){
+    deleteEmployee(){
+        if(this.selectedEmployee.id <= 0){
             return
         }
 
-        this.studentService.deleteStudent(this.selectedStudent.id).subscribe();
+        this.employeeService.deleteEmployee(this.selectedEmployee.id).subscribe();
 
         this.hideDialog();
     }
 
     onRowSelect(event: any) {
-        this.selectedStudent = event.data;
-        console.log(this.selectedStudent);
+        this.selectedEmployee = event.data;
+        console.log(this.selectedEmployee);
     }
 
     onRowUnselect(event: any) {
-        this.selectedStudent = new Student();
+        this.selectedEmployee = new Employee();
     }
 }

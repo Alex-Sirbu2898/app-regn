@@ -26,9 +26,9 @@ namespace Regnology.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
 
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Division> Divisions { get; set; }
-        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
     }
 }

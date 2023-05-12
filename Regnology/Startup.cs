@@ -18,7 +18,7 @@ namespace Regnology
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddMediatR(typeof(Startup));
-            services.AddTransient<IStudentQueryService, StudentQueryService>();
+            services.AddTransient<IQueryService<Employee>, EmployeeQueryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
