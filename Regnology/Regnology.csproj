@@ -25,4 +25,12 @@
     <PackageReference Include="X.PagedList" Version="8.4.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Data\Project\" />
+    <None Remove="Data\Client\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Project\" />
+    <Folder Include="Data\Client\" />
+  </ItemGroup>
 </Project>

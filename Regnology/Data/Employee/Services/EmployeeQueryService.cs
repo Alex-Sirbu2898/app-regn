@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Regnology.Business;
 using X.PagedList;
 
@@ -37,12 +41,34 @@ namespace Regnology.Data
         public IPagedList<Employee> Filter(FilterEmployeeQuery request)
         {
             var students = GetQuery();
-            if (!String.IsNullOrEmpty(request.SearchString))
+            if (!String.IsNullOrEmpty(request.FirstName))
             {
                 students = students.Where(s =>
-                           s.LastName.Contains(request.SearchString) ||
-                           s.FirstName.Contains(request.SearchString) ||
-                           s.Address.Contains(request.SearchString));
+                           s.FirstName.Contains(request.FirstName));
+            }
+
+            if (!String.IsNullOrEmpty(request.LastName))
+            {
+                students = students.Where(s =>
+                           s.LastName.Contains(request.LastName));
+            }
+
+            if (request.ManagerId > 0)
+            {
+                students = students.Where(s =>
+                           s.ManagerId == request.ManagerId);
+            }
+
+            if (request.RoleId > 0)
+            {
+                students = students.Where(s =>
+                           s.RoleId == request.ManagerId);
+            }
+
+            if (!String.IsNullOrEmpty(request.IdSeriesNumber))
+            {
+                students = students.Where(s =>
+                           s.IdSeriesNumber.Contains(request.IdSeriesNumber));
             }
             switch (request.sortOrder)
             {
