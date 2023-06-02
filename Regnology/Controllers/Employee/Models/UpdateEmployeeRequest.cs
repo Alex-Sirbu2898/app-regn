@@ -12,6 +12,6 @@ namespace Regnology.Controllers
         public Gender Gender { get; set; }
         public int Salary { get; set; }
         public int DivisionId { get; set; }
-        public int ManagerId { get; set; }
+        public string? ManagerId { get; set; }
     }
 }

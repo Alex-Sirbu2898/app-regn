@@ -21,8 +21,9 @@ namespace Regnology.Data
             builder.HasIndex(x => x.CNP).IsUnique();
 
             builder.HasOne(x => x.Division).WithMany().HasForeignKey(x => x.DivisionId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(x => x.Subordinates).WithOne().HasForeignKey(x => x.ManagerId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(x => x.Subordinates).WithOne().HasPrincipalKey(x => x.EmployeeId).HasForeignKey(x => x.ManagerId).OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(x => x.Role).WithMany().HasForeignKey(x => x.RoleId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(x => x.VacationRequests).WithOne().HasForeignKey(x => x.EmployeeId).OnDelete(DeleteBehavior.Cascade);
 
         }
     }

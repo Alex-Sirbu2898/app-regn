@@ -40,63 +40,63 @@ namespace Regnology.Data
 
         public IPagedList<Employee> Filter(FilterEmployeeQuery request)
         {
-            var students = GetQuery();
+            var employee = GetQuery();
             if (!String.IsNullOrEmpty(request.FirstName))
             {
-                students = students.Where(s =>
+                employee = employee.Where(s =>
                            s.FirstName.Contains(request.FirstName));
             }
 
             if (!String.IsNullOrEmpty(request.LastName))
             {
-                students = students.Where(s =>
+                employee = employee.Where(s =>
                            s.LastName.Contains(request.LastName));
             }
 
-            if (request.ManagerId > 0)
+            if (!String.IsNullOrEmpty(request.ManagerId))
             {
-                students = students.Where(s =>
+                employee = employee.Where(s =>
                            s.ManagerId == request.ManagerId);
             }
 
             if (request.RoleId > 0)
             {
-                students = students.Where(s =>
-                           s.RoleId == request.ManagerId);
+                employee = employee.Where(s =>
+                           s.RoleId == request.RoleId);
             }
 
             if (!String.IsNullOrEmpty(request.IdSeriesNumber))
             {
-                students = students.Where(s =>
+                employee = employee.Where(s =>
                            s.IdSeriesNumber.Contains(request.IdSeriesNumber));
             }
             switch (request.sortOrder)
             {
 
                 case "firstName_desc":
-                    students = students.OrderByDescending(s => s.FirstName);
+                    employee = employee.OrderByDescending(s => s.FirstName);
                     break;
                 case "FirstName":
-                    students = students.OrderBy(s => s.FirstName);
+                    employee = employee.OrderBy(s => s.FirstName);
                     break;
                 case "lastName_desc":
-                    students = students.OrderByDescending(s => s.LastName);
+                    employee = employee.OrderByDescending(s => s.LastName);
                     break;
                 case "Date":
-                    students = students.OrderBy(s => s.DateOfBirth);
+                    employee = employee.OrderBy(s => s.DateOfBirth);
                     break;
                 case "date_desc":
-                    students = students.OrderByDescending(s => s.DateOfBirth);
+                    employee = employee.OrderByDescending(s => s.DateOfBirth);
                     break;
                 default:
-                    students = students.OrderBy(s => s.LastName);
+                    employee = employee.OrderBy(s => s.LastName);
                     break;
             }
 
 
             int pageSize = 100;
             int pageNumber = (request.page ?? 1);
-            return students.ToPagedList(pageNumber, pageSize);
+            return employee.ToPagedList(pageNumber, pageSize);
         }
     }
 }

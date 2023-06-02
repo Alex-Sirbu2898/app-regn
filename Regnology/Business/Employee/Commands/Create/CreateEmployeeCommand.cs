@@ -15,7 +15,7 @@ namespace Regnology.Business
         public string CNP { get; set; }
         public string IdSeriesNumber { get; set; }
         public int DivisionId { get; set; }
-        public int ManagerId { get; set; }
+        public string? ManagerId { get; set; }
 
     }
 
