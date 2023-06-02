@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Regnology.Data;
 
@@ -11,9 +12,11 @@ using Regnology.Data;
 namespace Regnology.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601181547_Added new entities")]
+    partial class Addednewentities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +38,7 @@ namespace Regnology.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClientId")
+                    b.Property<string>("CliientId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -75,11 +78,11 @@ namespace Regnology.Migrations
 
             modelBuilder.Entity("Regnology.Data.Employee", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -90,9 +93,6 @@ namespace Regnology.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateOfHire")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DivisionId")
@@ -123,14 +123,13 @@ namespace Regnology.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
 
                     b.Property<long?>("ProjectId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("RoleId")
-                        .IsRequired()
+                    b.Property<long>("RoleId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("RoleId1")
@@ -185,7 +184,7 @@ namespace Regnology.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parameter", "application");
+                    b.ToTable("Parameters", "application");
                 });
 
             modelBuilder.Entity("Regnology.Data.Project", b =>
@@ -196,12 +195,12 @@ namespace Regnology.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ClientId")
+                    b.Property<long>("ClientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("ClientId1")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
@@ -212,7 +211,7 @@ namespace Regnology.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId1");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Projects", "application");
                 });
@@ -239,33 +238,6 @@ namespace Regnology.Migrations
                     b.ToTable("Roles", "application");
                 });
 
-            modelBuilder.Entity("Regnology.Data.Vacation", b =>
-                {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("NoOfUsedDays")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("VacationStatus")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Vacations", "application");
-                });
-
             modelBuilder.Entity("Regnology.Data.Employee", b =>
                 {
                     b.HasOne("Regnology.Data.Division", "Division")
@@ -281,8 +253,8 @@ namespace Regnology.Migrations
                     b.HasOne("Regnology.Data.Employee", null)
                         .WithMany("Subordinates")
                         .HasForeignKey("ManagerId")
-                        .HasPrincipalKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("Regnology.Data.Project", null)
                         .WithMany("Employee")
@@ -309,7 +281,7 @@ namespace Regnology.Migrations
                 {
                     b.HasOne("Regnology.Data.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientId1")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -323,23 +295,6 @@ namespace Regnology.Migrations
                         .HasForeignKey("DivisionId");
                 });
 
-            modelBuilder.Entity("Regnology.Data.Vacation", b =>
-                {
-                    b.HasOne("Regnology.Data.Employee", null)
-                        .WithMany("VacationRequests")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Regnology.Data.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("Regnology.Data.Division", b =>
                 {
                     b.Navigation("Employees");
@@ -350,8 +305,6 @@ namespace Regnology.Migrations
             modelBuilder.Entity("Regnology.Data.Employee", b =>
                 {
                     b.Navigation("Subordinates");
-
-                    b.Navigation("VacationRequests");
                 });
 
             modelBuilder.Entity("Regnology.Data.Project", b =>

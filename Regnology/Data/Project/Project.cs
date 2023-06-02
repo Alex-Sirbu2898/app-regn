@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Regnology.Data
+﻿namespace Regnology.Data
 {
     public class Project
     {
@@ -11,7 +8,7 @@ namespace Regnology.Data
 
     public DateTime Deadline { get; set; }
 
-    public string ClientName { get; set; }
+    public string ClientId { get; set; }
 
     public virtual IList<Employee> Employee { get; set; }
 

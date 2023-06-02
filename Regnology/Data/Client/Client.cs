@@ -7,7 +7,7 @@ namespace Regnology.Data
 
         public string Name { get; set; }
 
-        public string CliientId { get; set; }
+        public string ClientId { get; set; }
 
         public string Address { get; set; }
 

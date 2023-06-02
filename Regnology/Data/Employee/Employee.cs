@@ -2,7 +2,7 @@
 {
     public class Employee
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -13,17 +13,19 @@
         public string CNP { get; set; }
         public string IdSeriesNumber { get; set; }
         public int DivisionId { get; set; }
-        public int ManagerId { get; set; }
+        public string? ManagerId { get; set; }
         public int VacationDays { get; set; }
         public int DivisionId2 { get; set; }
         public int ManagerId2 { get; set; }
         public int VacationDays2 { get; set; }
         public bool IsManagement { get; set; }
-        public long RoleId { get; set; }
+        public long? RoleId { get; set; }
+        public DateTime? DateOfHire { get; set; }
 
         public virtual Division Division { get; set; }
         public virtual IList<Employee> Subordinates { get; set; }
         public virtual Role Role { get; set; }
+        public virtual IList<Vacation> VacationRequests { get; set; }
 
     }
 }

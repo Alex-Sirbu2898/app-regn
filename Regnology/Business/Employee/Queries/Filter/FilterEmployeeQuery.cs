@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Regnology.Data;
 using X.PagedList;
 
 namespace Regnology.Business
@@ -11,14 +12,14 @@ namespace Regnology.Business
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
         public int Salary { get; set; }
-        public string EmployeeId { get; set; }
-        public string CNP { get; set; }
-        public string IdSeriesNumber { get; set; }
-        public int DivisionId { get; set; }
-        public int ManagerId { get; set; }
+        public string? EmployeeId { get; set; }
+        public string? CNP { get; set; }
+        public string? IdSeriesNumber { get; set; }
+        public int? DivisionId { get; set; }
+        public string? ManagerId { get; set; }
         public int VacationDays { get; set; }
         public bool IsManagement { get; set; }
-        public long RoleId { get; set; }
+        public long? RoleId { get; set; }
         public string? sortOrder { get; set; }
         public int? page { get; set; }
     }
