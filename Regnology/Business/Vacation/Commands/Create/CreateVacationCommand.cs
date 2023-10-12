@@ -1,13 +1,20 @@
-﻿namespace Regnology.Data
+﻿using MediatR;
+using Regnology.Data;
+
+namespace Regnology.Business
 {
-    public class Vacation
+    public class CreateVacationCommand: IRequest<long>
     {
-        public long Id { get; set; }
         public int NoOfUsedDays { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string EmployeeId { get; set; }
         public VacationStatus VacationStatus { get; set; }
-        public virtual Employee Employee { get; set; }
+
+    }
+
+    public sealed class CreateVacationResponse
+    {
+        public long Id { get; set; }
     }
 }
