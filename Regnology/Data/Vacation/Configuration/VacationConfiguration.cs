@@ -13,7 +13,7 @@ namespace Regnology.Data
             builder.Property(x => x.EndDate).IsRequired();
             builder.Property(x => x.EmployeeId).IsRequired();
 
-            builder.HasOne(x => x.Employee).WithMany().HasForeignKey(x => x.Id).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Employee).WithMany().HasPrincipalKey(x => x.EmployeeId).HasForeignKey(x => x.EmployeeId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

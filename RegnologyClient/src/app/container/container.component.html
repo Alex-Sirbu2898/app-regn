@@ -1,0 +1,16 @@
+<div class="card">
+    <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true">
+        <p-tabPanel [header]="Personal Details">
+            <employee-vacation [entityId]="entityId"></employee-vacation>
+        </p-tabPanel>
+        <p-tabPanel [header]="Salary">
+            <p>{{ tab.content }}</p>
+        </p-tabPanel>
+        <p-tabPanel [header]="Documents">
+            <p>{{ tab.content }}</p>
+        </p-tabPanel>
+        <p-tabPanel [header]="Absence">
+            <p>{{ tab.content }}</p>
+        </p-tabPanel>
+    </p-tabView>
+</div>

@@ -42,5 +42,10 @@ namespace Regnology.Data
         {
             throw new NotImplementedException();
         }
+
+        public IQueryable<Vacation> GetAllByEmployeeId(string employeeId)
+        {
+            return GetQuery().Where(x => x.EmployeeId == employeeId);
+        }
     }
 }
