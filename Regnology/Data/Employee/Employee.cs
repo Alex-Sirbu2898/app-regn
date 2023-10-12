@@ -15,6 +15,9 @@
         public int DivisionId { get; set; }
         public int ManagerId { get; set; }
         public int VacationDays { get; set; }
+        public int DivisionId2 { get; set; }
+        public int ManagerId2 { get; set; }
+        public int VacationDays2 { get; set; }
         public bool IsManagement { get; set; }
         public long RoleId { get; set; }
 
